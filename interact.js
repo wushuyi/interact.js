@@ -1580,7 +1580,7 @@
             var target = this.target,
                 options = target && target.options;
 
-            if (target && !this.interacting()) {
+            if (target && (forceAction || !this.prepared.name)) {
                 action = action || validateAction(forceAction || target.getAction(pointer, this, curEventTarget), target, this.element);
 
                 this.setEventXY(this.startCoords);
@@ -1752,6 +1752,7 @@
             this.target         = interactable;
             this.element        = element;
 
+            this.setEventXY(this.startCoords);
             this.setStartOffsets(action.name, interactable, element);
             this.setModifications(this.startCoords.page);
 
